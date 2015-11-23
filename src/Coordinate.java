@@ -12,14 +12,11 @@ public class Coordinate {
 		this.col = col;
 	}
 	
-	// hashcode for row and column.
-	// multiplying 1000 to row and adding col ensures that no same set of coordinates is added
 	@Override
 	public int hashCode() {
 		return row*1000 + col;
 	}
 	
-	// equals method used for contains()
 	@Override
 	public boolean equals(Object object){
 		if (object == null) return false;
