@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
+
 import static javax.swing.ScrollPaneConstants.*;
 
 import java.io.File;
@@ -26,6 +27,10 @@ public class MainFrame extends JFrame {
 	private JComboBox searchMenu, heuristicsMenu; 
 	private char hChoice = ' ';
 	private JPanel questionPanel;
+	private JPanel mainPanel = (JPanel) getContentPane();
+	private JPanel gridPanel = new JPanel();
+	private Grid grid;
+	private boolean gridExist = false;
 	
 	private JLabel questionLabel1 = new JLabel();
 	private JLabel questionLabel2 = new JLabel();
@@ -35,6 +40,8 @@ public class MainFrame extends JFrame {
 	private String questionSelected = " ";
 	private String solution = "";
 	private String[] steps;
+	
+	
 	
 	private HashSet<Coordinate> walls;
 	private HashSet<Coordinate> goals;
@@ -48,13 +55,14 @@ public class MainFrame extends JFrame {
 			"Hungarian", "Max{h1, h2, h3}"};
 	
 	
+	
 	/**
 	 * @throws IOException
 	 */
 	public MainFrame() throws IOException {
 		init();
 		updateQuestion("default");
-		setSize(700, 500);
+		setSize(700, 800);
 		setTitle("Sokoban Solver");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
@@ -66,11 +74,11 @@ public class MainFrame extends JFrame {
 	 * @throws IOException
 	 */
 	private void init() throws IOException {
-		JPanel mainPanel = (JPanel) getContentPane();
 		mainPanel.setLayout(new BorderLayout());
-		mainPanel.add(getTopPanel(), BorderLayout.NORTH); 
-		mainPanel.add(getAnswerPanel(), BorderLayout.CENTER);
-		mainPanel.add(getLoadingPanel(), BorderLayout.SOUTH);
+		mainPanel.add(getTopPanel(), BorderLayout.NORTH);		
+		mainPanel.add(getAnswerPanel(), BorderLayout.WEST);		
+		mainPanel.add(getLoadingPanel(), BorderLayout.SOUTH);	
+		
 		addListeners();
 	}
 	
@@ -120,24 +128,34 @@ public class MainFrame extends JFrame {
 		
 		return loadingPanel;
 	}
-
-	private JScrollPane getAnswerPanel() {
+	
+	private JPanel getGrid(){
+		grid = new Grid(numRow, numCol, 30);
+		gridPanel = grid; 
+		gridPanel.setLayout(new BorderLayout());
+		gridPanel.setSize(new Dimension(300,300));
+		gridPanel.setBorder(BorderFactory.createTitledBorder("Grid"));
+		System.out.println(gridPanel);
+		return gridPanel;
+	}	
+	
+	
+	private JPanel getAnswerPanel() {
 		JPanel answerPanel = new JPanel();
 		answerPanel.setLayout(new BorderLayout());
 		answerText = new JTextArea();
 		answerText.setText("");
-		answerText.setSize(new Dimension(650, 100));
+		answerText.setSize(new Dimension(350, 100));
 		answerText.setEditable(false); 
 		answerText.setLineWrap(true); 
 		Font font = new Font("Monaco", Font.PLAIN, 12);
-        answerText.setFont(font);
+        answerText.setFont(font);               
 		
 		answerPanel.add(answerText);
-		JScrollPane answerPane = new JScrollPane(answerPanel);
-		answerPane.setSize(new Dimension(700,350));
-		answerPane.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
-		answerPane.setBorder(BorderFactory.createTitledBorder("Answer"));
-		return answerPane;
+		answerPanel.setSize(new Dimension(700,250));
+		//answerPanel.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
+		answerPanel.setBorder(BorderFactory.createTitledBorder("Answer"));
+		return answerPanel;
 	}
 
 	private JPanel getTopPanel() throws IOException {
@@ -250,6 +268,10 @@ public class MainFrame extends JFrame {
 						answerText.setText("Solution: " + solution + " " + totalSteps);
 						String runtime = answer.substring(answer.indexOf("units")+7);
 						String message = questionSelected + " search. Total runtime : " + runtime;
+						if(gridExist)
+							mainPanel.remove(grid);
+						mainPanel.add(getGrid(), BorderLayout.EAST);
+						gridExist = true;
 						if (answer.contains("Failed")) {
 							displayMessage("No solution found using " + message);
 							repaint();
@@ -329,6 +351,7 @@ public class MainFrame extends JFrame {
 		});
 	
 	}
+	
 
 	private void updatePuzzle() {
 		int totalSteps = steps.length;
@@ -339,17 +362,23 @@ public class MainFrame extends JFrame {
 			for (int i=0; i<numRow; i++) {
 				for (int j=0; j<numCol; j++) {
 					Coordinate c = new Coordinate(i, j);
-					if (player.equals(c))
+					if (player.equals(c)){
+						grid.colorGridCoordinate(i, j, ColorEnum.RED);
 						position += "@";
-					else if (diamonds.contains(c))
+					}else if (diamonds.contains(c)){
+						grid.colorGridCoordinate(i, j, ColorEnum.BLUE);
 						position += "$";
-					else if (goals.contains(c))
+					}else if (goals.contains(c)){
+						grid.colorGridCoordinate(i, j, ColorEnum.GREEN);
 						position += ".";
-					else if (walls.contains(c))
+					}else if (walls.contains(c)){
+						grid.colorGridCoordinate(i, j, ColorEnum.GREY);
 						position += "#";
-					else
+					}else{
+						grid.colorGridCoordinate(i, j, ColorEnum.YELLOW);
 						position += " ";
-				}
+					}
+				}				
 				position += "\n";
 			}
 			output += position;
