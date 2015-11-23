@@ -38,32 +38,32 @@ public class SokobanSolver {
 		diamondAmount = Integer.parseInt(s.nextLine());
 		for (int i=0; i<row; i++) {
 			String next = s.nextLine();
-//			for (int j=0; j<next.length(); j++) {
-//				char c = next.charAt(j);
-//				if (c=='#') //walls
-//					walls.add(new Coordinate(i, j));
-//				if (c == '@' || c == '+') { //player
-//					player = new Coordinate(i, j);
-//					numPlayer++;
-//				}
-//				if (c == '.' || c == '+' || c == '*') //goals
-//					goals.add(new Coordinate(i, j));
-//				if (c == '$' || c == '*') //diamonds
-//					diamonds.add(new Coordinate(i,j));
-//			}
 			for (int j=0; j<next.length(); j++) {
 				char c = next.charAt(j);
-				if (c=='X') //walls
+				if (c=='#') //walls
 					walls.add(new Coordinate(i, j));
-				if (c == 'M') { //player
+				if (c == '@' || c == '+') { //player
 					player = new Coordinate(i, j);
 					numPlayer++;
 				}
-				if (c == 'G') //goals
+				if (c == '.' || c == '+' || c == '*') //goals
 					goals.add(new Coordinate(i, j));
-				if (c == 'J') //diamonds
+				if (c == '$' || c == '*') //diamonds
 					diamonds.add(new Coordinate(i,j));
 			}
+//			for (int j=0; j<next.length(); j++) {
+//				char c = next.charAt(j);
+//				if (c=='X') //walls
+//					walls.add(new Coordinate(i, j));
+//				if (c == 'M') { //player
+//					player = new Coordinate(i, j);
+//					numPlayer++;
+//				}
+//				if (c == 'G') //goals
+//					goals.add(new Coordinate(i, j));
+//				if (c == 'J') //diamonds
+//					diamonds.add(new Coordinate(i,j));
+//			}
 			if (next.length() > col)
 				col = next.length();
 		}
