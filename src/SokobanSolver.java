@@ -33,11 +33,9 @@ public class SokobanSolver {
 		goals = new HashSet<Coordinate>();
 		diamonds = new HashSet<Coordinate>();
 		Scanner s = new Scanner(new File(filename));
-		//col = Integer.parseInt(s.nextLine());
-		col = 0;
+		col = 0; //Integer.parseInt(s.nextLine());
 		row = Integer.parseInt(s.nextLine());
-		//diamondAmount = Integer.parseInt(s.nextLine());
-		diamondAmount = 3;
+		diamondAmount = 4; //Integer.parseInt(s.nextLine());
 		for (int i=0; i<row; i++) {
 			String next = s.nextLine();
 			for (int j=0; j<next.length(); j++) {
@@ -65,16 +63,17 @@ public class SokobanSolver {
 	public String solve(char method) {
 		Search s = new Search(h);
 		switch(method) {
-		// breadth-first
-		case 'b':
-			return s.bfs(prob);
-		// depth-first
-		case 'd':
-			return s.dfs(prob);
+		case 'u':
+			return s.prioritySearch(prob, 'u');
+		case 'a':
+			return s.prioritySearch(prob, 'a');	
+		case 'g':
+			return s.prioritySearch(prob, 'g');
 		default:
-			return "Invalid search method, please choose something valid.";
+			return "Invalid method, please choose a valid search method.";
 		}
-	}
+		}
+	
 
 	public int getRow() {
 		return row;

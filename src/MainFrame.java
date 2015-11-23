@@ -49,10 +49,10 @@ public class MainFrame extends JFrame {
 	private Coordinate player;
 	private String[] puzzleStates; 
 
-	private String[] choices = {"Breadth-First", "Depth-First"}; 
+	private String[] choices = {"A*"}; 
 	
-	private String[] hChoices = {"Manhattan", "Euclidean", 
-			"Hungarian", "Max{h1, h2, h3}"};
+	private String[] hChoices = {"Manhattan", "Max{h1, h2, h3}"};
+	
 	
 	
 	
@@ -426,7 +426,11 @@ public class MainFrame extends JFrame {
 		questionField1.setPreferredSize(new Dimension(100, 20));
 		questionField1.setVisible(true);
 		submit.setEnabled(true);
-		if (selected.equals("breadth-first")||selected.equals("depth-first")) {
+		if (selected.equals("a*")||selected.equals("greedy")) {
+			questionLabel2.setText(". Heuristics: ");
+			heuristicsMenu.setVisible(true);
+		}
+		else if (selected.equals("breadth-first")||selected.equals("depth-first")) {
 			heuristicsMenu.setVisible(false);
 		}
 		else {

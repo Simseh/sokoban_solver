@@ -7,25 +7,7 @@ import javax.swing.*;
  * The class also include a main() routine that creates a window containing
  * a panel of this type.
  */
-public class Grid extends JPanel implements MouseListener {
-
-	
-	public static void main(String[] args) {
-		JFrame window; 
-		window = new JFrame("Grid");
-		Grid content = new Grid(10,10,30);
-		window.setContentPane( content );
-		window.pack(); // Set the size of the window based on the panel's preferred size.
-		Dimension screenSize; // A simple object containing the screen's width and height.
-		screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int top, left;  // position for top left corner of the window
-		left = ( screenSize.width - window.getWidth() ) / 2;
-		top = ( screenSize.height - window.getHeight() ) / 2;
-		window.setLocation(left,top);
-		window.setResizable(false);
-		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.setVisible(true);
-	}
+public class Grid extends JPanel{
 	
 	public static JPanel createGrid(int rows, int cols, int squareSize){
 		JPanel content = new Grid(rows, cols, squareSize);		
@@ -61,7 +43,6 @@ public class Grid extends JPanel implements MouseListener {
 		setPreferredSize( new Dimension(preferredSquareSize*columns, 
 				preferredSquareSize*rows) );
 		setBackground(Color.WHITE); // Set the background color for this panel.
-		addMouseListener(this);     // Mouse actions will call methods in this object.
 	}
 	
 	
@@ -84,14 +65,6 @@ public class Grid extends JPanel implements MouseListener {
 		return (int)(((double)pixelX)/getWidth()*gridCols);
 	}
 	
-	public void mousePressed(MouseEvent evt) {
-		int row, col; // the row and column in the grid of squares where the user clicked.
-		row = findRow( evt.getY() );
-		col = findColumn( evt.getX() );
-		gridColor[row][col] = new Color( (int)(225*Math.random()),
-				(int)(225*Math.random()),(int)(225*Math.random()) );
-		repaint(); // Causes the panel to be redrawn, by calling the paintComponent method.
-	}
 	public void colorGridCoordinate(int row, int col, ColorEnum color){
 		gridColor[row][col] = new Color(color.r, color.g, color.b);
 		repaint();
