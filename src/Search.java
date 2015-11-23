@@ -13,7 +13,7 @@ import java.util.Stack;
  */
 
 public class Search {
-
+	
 	//The two solver types
 	private static final String BFS = "Breadth-First Search";
     private static final String DFS = "Depth-First Search";

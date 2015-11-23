@@ -1,6 +1,5 @@
 /**
- * Coordinate class stores row and column values for diamonds, player, goals and walls
- * @author Hyun Seung Hong (hh2473)
+ * @author Simon Larsen (simla13) & Jacob Andersen (jacan13)
  *
  */
 public class Coordinate {
