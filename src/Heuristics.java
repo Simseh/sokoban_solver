@@ -43,7 +43,6 @@ public class Heuristics {
 	private double getDist(Coordinate obj, HashSet<Coordinate> sets, String method) {
 		double minDist = 1000000;
 		
-		//For each coordinate in a set, calculate the distance according to given heuristic choice
 		for (Coordinate c : sets) {
 			double dist;
 			if (method.equals("m"))

@@ -145,7 +145,7 @@ public class MainFrame extends JFrame {
 		topPanel.setSize(new Dimension(700, 100));
 		topPanel.setLayout(new GridLayout(2, 1));
 		
-		Image logo = ImageIO.read(new File("C:/Users/Simseh94/workspace/Sokoban_Solver/img/sokoban_logo.png"));
+		Image logo = ImageIO.read(new File("img/sokoban_logo.png"));
 		Image resizedLogo = logo.getScaledInstance(700, 50, Image.SCALE_SMOOTH); 
 		JLabel picLabel = new JLabel(new ImageIcon(resizedLogo));
 		picLabel.setSize(700,50);
