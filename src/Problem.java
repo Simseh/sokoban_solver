@@ -20,17 +20,17 @@ public class Problem {
 	}
 
 	public boolean goalTest(State state) {
-		for(Coordinate box : state.diamonds)
-			if (!goals.contains(box))
+		for(Coordinate diamond : state.diamonds)
+			if (!goals.contains(diamond))
 				return false;
 		return true;
 	}
 	
 
 	public boolean deadlockTest(State state) {
-		for (Coordinate box : state.diamonds) {
-			int row = box.row;
-			int col = box.col;
+		for (Coordinate diamond : state.diamonds) {
+			int row = diamond.row;
+			int col = diamond.col;
 			if (!setContains(goals, row, col)) {
 				if (setContains(walls, row-1, col)&&setContains(walls, row, col-1))
 					return true; 
@@ -74,30 +74,30 @@ public class Problem {
 		HashSet<Coordinate> diamonds = state.diamonds;
 		
 		Coordinate newPlayer = new Coordinate(row-1,col);
-		Coordinate newBox = new Coordinate(row-2, col);
+		Coordinate newDiamond = new Coordinate(row-2, col);
 		if (!walls.contains(newPlayer))
-			if (diamonds.contains(newPlayer)&&(diamonds.contains(newBox)||walls.contains(newBox)))
+			if (diamonds.contains(newPlayer)&&(diamonds.contains(newDiamond)||walls.contains(newDiamond)))
 				;
 			else
 				actionList.add("u");
 		newPlayer = new Coordinate(row,col+1);
-		newBox = new Coordinate(row, col+2);
+		newDiamond = new Coordinate(row, col+2);
 		if (!walls.contains(newPlayer))
-			if (diamonds.contains(newPlayer)&&(diamonds.contains(newBox)||walls.contains(newBox)))
+			if (diamonds.contains(newPlayer)&&(diamonds.contains(newDiamond)||walls.contains(newDiamond)))
 				;
 			else
 				actionList.add("r");
 		newPlayer = new Coordinate(row+1,col);
-		newBox = new Coordinate(row+2, col);
+		newDiamond = new Coordinate(row+2, col);
 		if (!walls.contains(newPlayer))
-			if (diamonds.contains(newPlayer)&&(diamonds.contains(newBox)||walls.contains(newBox)))
+			if (diamonds.contains(newPlayer)&&(diamonds.contains(newDiamond)||walls.contains(newDiamond)))
 				;
 			else
 				actionList.add("d");
 		newPlayer = new Coordinate(row,col-1);
-		newBox = new Coordinate(row, col-2);
+		newDiamond = new Coordinate(row, col-2);
 		if (!walls.contains(newPlayer))
-			if (diamonds.contains(newPlayer)&&(diamonds.contains(newBox)||walls.contains(newBox)))
+			if (diamonds.contains(newPlayer)&&(diamonds.contains(newDiamond)||walls.contains(newDiamond)))
 				;
 			else
 				actionList.add("l");

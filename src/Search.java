@@ -126,9 +126,9 @@ public class Search {
 			case 'u':
 				newPlayer = new Coordinate(row-1, col);
 				if (diamonds.contains(newPlayer)) {
-					Coordinate newBox = new Coordinate(row-2, col);
+					Coordinate newDiamond = new Coordinate(row-2, col);
 					diamonds.remove(newPlayer);
-					diamonds.add(newBox);
+					diamonds.add(newDiamond);
 					if (isUcs)
 						newCost++;
 				}
@@ -136,9 +136,9 @@ public class Search {
 			case 'd':
 				newPlayer = new Coordinate(row+1, col);
 				if (diamonds.contains(newPlayer)) {
-					Coordinate newBox = new Coordinate(row+2, col);
+					Coordinate newDiamond = new Coordinate(row+2, col);
 					diamonds.remove(newPlayer);
-					diamonds.add(newBox);
+					diamonds.add(newDiamond);
 					if (isUcs)
 						newCost++;
 				}
@@ -146,9 +146,9 @@ public class Search {
 			case 'l':
 				newPlayer = new Coordinate(row, col-1);
 				if (diamonds.contains(newPlayer)) {
-					Coordinate newBox = new Coordinate(row, col-2);
+					Coordinate newDiamond = new Coordinate(row, col-2);
 					diamonds.remove(newPlayer);
-					diamonds.add(newBox);
+					diamonds.add(newDiamond);
 					if (isUcs)
 						newCost++;
 				}
@@ -156,9 +156,9 @@ public class Search {
 			case 'r':
 				newPlayer = new Coordinate(row, col+1);
 				if (diamonds.contains(newPlayer)) {
-					Coordinate newBox = new Coordinate(row, col+2);
+					Coordinate newDiamond = new Coordinate(row, col+2);
 					diamonds.remove(newPlayer);
-					diamonds.add(newBox);
+					diamonds.add(newDiamond);
 					if (isUcs)
 						newCost++;
 				}

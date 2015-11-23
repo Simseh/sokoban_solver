@@ -58,8 +58,8 @@ Puzzle should be expressed using the following ASCII characters:
 .	(period)	Empty goal 
 @	(at)    	Player on floor 
 +	(plus)		Player on goal 
-$	(dollar)	Box on floor 
-*	(asterisk)	Box on goal 
+$	(dollar)	Diamond on floor 
+*	(asterisk)	Diamond on goal 
 </pre>
 
 Output

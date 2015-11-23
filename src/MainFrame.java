@@ -290,33 +290,33 @@ public class MainFrame extends JFrame {
 						int row = player.row;
 						int col = player.col;
 						if (steps[currentStep].equals("u")) {
-							Coordinate checkBox = new Coordinate(row-1, col);
-							if (diamonds.contains(checkBox)) {
-								diamonds.remove(checkBox);
+							Coordinate checkDiamond = new Coordinate(row-1, col);
+							if (diamonds.contains(checkDiamond)) {
+								diamonds.remove(checkDiamond);
 								diamonds.add(new Coordinate(row-2, col));
 							}
 							player = new Coordinate(row-1, col);
 						}
 						else if (steps[currentStep].equals("d")) {
-							Coordinate checkBox = new Coordinate(row+1, col);
-							if (diamonds.contains(checkBox)) {
-								diamonds.remove(checkBox);
+							Coordinate checkDiamond = new Coordinate(row+1, col);
+							if (diamonds.contains(checkDiamond)) {
+								diamonds.remove(checkDiamond);
 								diamonds.add(new Coordinate(row+2, col));
 							}
 							player = new Coordinate(row+1, col);
 						}
 						else if (steps[currentStep].equals("l")) {
-							Coordinate checkBox = new Coordinate(row, col-1);
-							if (diamonds.contains(checkBox)) {
-								diamonds.remove(checkBox);
+							Coordinate checkDiamond = new Coordinate(row, col-1);
+							if (diamonds.contains(checkDiamond)) {
+								diamonds.remove(checkDiamond);
 								diamonds.add(new Coordinate(row, col-2));
 							}
 							player = new Coordinate(row, col-1);
 						}
 						else if (steps[currentStep].equals("r")) {
-							Coordinate checkBox = new Coordinate(row, col+1);
-							if (diamonds.contains(checkBox)) {
-								diamonds.remove(checkBox);
+							Coordinate checkDiamond = new Coordinate(row, col+1);
+							if (diamonds.contains(checkDiamond)) {
+								diamonds.remove(checkDiamond);
 								diamonds.add(new Coordinate(row, col+2));
 							}
 							player = new Coordinate(row, col+1);

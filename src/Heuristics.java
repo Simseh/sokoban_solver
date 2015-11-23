@@ -33,8 +33,8 @@ public class Heuristics {
 		sum+= playerMin;
 		
 		for (Coordinate b : diamonds) {
-			double boxMin = getDist(b, goals, method);
-			sum += boxMin;
+			double diamondMin = getDist(b, goals, method);
+			sum += diamondMin;
 		}
 		
 		return sum;
@@ -65,11 +65,11 @@ public class Heuristics {
 			return calculate(state, "e");
 		
 		int i=0;
-		for (Coordinate box : state.diamonds) {
+		for (Coordinate diamond : state.diamonds) {
 			int j=0;
-			double playerCost = manhattan(state.player, box);
+			double playerCost = manhattan(state.player, diamond);
 			for (Coordinate goal : goals) {
-				cost[i][j] = manhattan(box, goal);
+				cost[i][j] = manhattan(diamond, goal);
 				cost[i][j] += playerCost;
 				j++;
 			}
