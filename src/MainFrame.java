@@ -340,15 +340,15 @@ public class MainFrame extends JFrame {
 				for (int j=0; j<numCol; j++) {
 					Coordinate c = new Coordinate(i, j);
 					if (player.equals(c))
-						position += "@";
+						position += "M";
 					else if (diamonds.contains(c))
-						position += "$";
+						position += "J";
 					else if (goals.contains(c))
-						position += ".";
+						position += "G";
 					else if (walls.contains(c))
-						position += "#";
+						position += "X";
 					else
-						position += " ";
+						position += ".";
 				}
 				position += "\n";
 			}
@@ -361,17 +361,11 @@ public class MainFrame extends JFrame {
 		repaint();
 	}
 	
-	/**
-	 * @param message
-	 */
 	private void displaySolvingMessage(String message) {
 		loadingLabel.setText("Solving the puzzle using " + message + " search...");
 		repaint();
 	}
 
-	/**
-	 * Displays appropriate message
-	 */
 	private void displayMessage(String message) {
 		loadingLabel.setText(message);
 		repaint();
@@ -398,8 +392,8 @@ public class MainFrame extends JFrame {
 	}
 
 	private void updateQuestion(String selected) {
-		questionLabel1.setText("Enter the filename: ");
-		questionField1.setText("[filename]");
+		questionLabel1.setText("Enter the filepath: ");
+		questionField1.setText("");
 		questionField1.setPreferredSize(new Dimension(100, 20));
 		questionField1.setVisible(true);
 		submit.setEnabled(true);

@@ -68,7 +68,7 @@ public class Search {
 		if (p.goalTest(node.state))
 			return getSolution(DFS, node, totalNode, 0, 0, 0, System.currentTimeMillis() - startTime);
 		
-		Set<State> explored = new HashSet<State>(); //empty set
+		Set<State> explored = new HashSet<State>();
 		Stack<Node> fringe = new Stack<Node>();
 		fringe.push(node);
 		while (!fringe.isEmpty()) {
