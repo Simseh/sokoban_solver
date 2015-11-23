@@ -311,7 +311,7 @@ public class MainFrame extends JFrame {
 					if (puzzleStates[currentStep+1]==null) {
 						int row = player.row;
 						int col = player.col;
-						if (steps[currentStep].equals("u")) {
+						if (steps[currentStep].equals("u") || steps[currentStep].equals("U")) {
 							Coordinate checkDiamond = new Coordinate(row-1, col);
 							if (diamonds.contains(checkDiamond)) {
 								diamonds.remove(checkDiamond);
@@ -319,7 +319,7 @@ public class MainFrame extends JFrame {
 							}
 							player = new Coordinate(row-1, col);
 						}
-						else if (steps[currentStep].equals("d")) {
+						else if (steps[currentStep].equals("d") || steps[currentStep].equals("D")) {
 							Coordinate checkDiamond = new Coordinate(row+1, col);
 							if (diamonds.contains(checkDiamond)) {
 								diamonds.remove(checkDiamond);
@@ -327,7 +327,7 @@ public class MainFrame extends JFrame {
 							}
 							player = new Coordinate(row+1, col);
 						}
-						else if (steps[currentStep].equals("l")) {
+						else if (steps[currentStep].equals("l") || steps[currentStep].equals("L")) {
 							Coordinate checkDiamond = new Coordinate(row, col-1);
 							if (diamonds.contains(checkDiamond)) {
 								diamonds.remove(checkDiamond);
@@ -335,7 +335,7 @@ public class MainFrame extends JFrame {
 							}
 							player = new Coordinate(row, col-1);
 						}
-						else if (steps[currentStep].equals("r")) {
+						else if (steps[currentStep].equals("r") || steps[currentStep].equals("R")) {
 							Coordinate checkDiamond = new Coordinate(row, col+1);
 							if (diamonds.contains(checkDiamond)) {
 								diamonds.remove(checkDiamond);

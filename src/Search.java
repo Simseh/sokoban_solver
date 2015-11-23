@@ -19,6 +19,7 @@ public class Search {
     private static final String UCS = "Uniform-Cost Search";
     private static final String ASTAR = "A* Search";
     private static final String GREEDY = "Greedy Search";
+    private ArrayList<String> actions;
     
     private static Heuristics h;
 	
@@ -123,7 +124,7 @@ public class Search {
 				return getSolution(method, n, totalNode, redundant, fringe.size(), explored.size(), System.currentTimeMillis() - startTime);
 			if (!p.deadlockTest(n.state)) { //check for deadlock
 				explored.add(n.state);
-				ArrayList<String> actions = p.actions(n.state);
+				actions = p.actions(n.state);
 				for (int i=0; i<actions.size(); i++) {
 					Node child = getChild(p, n, actions.get(i), isUCS);
 					if((child!=null) && (child.state!=null)) {
@@ -185,7 +186,27 @@ public class Search {
 						newCost++;
 				}
 				break;
+			case 'U':
+				newPlayer = new Coordinate(row-1, col);
+				if (diamonds.contains(newPlayer)) {
+					Coordinate newDiamond = new Coordinate(row-2, col);
+					diamonds.remove(newPlayer);
+					diamonds.add(newDiamond);
+					if (isUcs)
+						newCost++;
+				}
+				break;
 			case 'd':
+				newPlayer = new Coordinate(row+1, col);
+				if (diamonds.contains(newPlayer)) {
+					Coordinate newDiamond = new Coordinate(row+2, col);
+					diamonds.remove(newPlayer);
+					diamonds.add(newDiamond);
+					if (isUcs)
+						newCost++;
+				}
+				break;
+			case 'D':
 				newPlayer = new Coordinate(row+1, col);
 				if (diamonds.contains(newPlayer)) {
 					Coordinate newDiamond = new Coordinate(row+2, col);
@@ -205,7 +226,27 @@ public class Search {
 						newCost++;
 				}
 				break;
+			case 'L':
+				newPlayer = new Coordinate(row, col-1);
+				if (diamonds.contains(newPlayer)) {
+					Coordinate newDiamond = new Coordinate(row, col-2);
+					diamonds.remove(newPlayer);
+					diamonds.add(newDiamond);
+					if (isUcs)
+						newCost++;
+				}
+				break;
 			case 'r':
+				newPlayer = new Coordinate(row, col+1);
+				if (diamonds.contains(newPlayer)) {
+					Coordinate newDiamond = new Coordinate(row, col+2);
+					diamonds.remove(newPlayer);
+					diamonds.add(newDiamond);
+					if (isUcs)
+						newCost++;
+				}
+				break;
+			case 'R':
 				newPlayer = new Coordinate(row, col+1);
 				if (diamonds.contains(newPlayer)) {
 					Coordinate newDiamond = new Coordinate(row, col+2);

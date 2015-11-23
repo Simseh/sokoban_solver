@@ -78,13 +78,18 @@ public class Problem {
 		if (!walls.contains(newPlayer))
 			if (diamonds.contains(newPlayer)&&(diamonds.contains(newDiamond)||walls.contains(newDiamond)))
 				;
-			else
+			else if(diamonds.contains(newPlayer)){
+				actionList.add("U");
+			}else
 				actionList.add("u");
 		newPlayer = new Coordinate(row,col+1);
 		newDiamond = new Coordinate(row, col+2);
 		if (!walls.contains(newPlayer))
 			if (diamonds.contains(newPlayer)&&(diamonds.contains(newDiamond)||walls.contains(newDiamond)))
 				;
+			else if(diamonds.contains(newPlayer)){
+				actionList.add("R");
+			}
 			else
 				actionList.add("r");
 		newPlayer = new Coordinate(row+1,col);
@@ -92,6 +97,9 @@ public class Problem {
 		if (!walls.contains(newPlayer))
 			if (diamonds.contains(newPlayer)&&(diamonds.contains(newDiamond)||walls.contains(newDiamond)))
 				;
+			else if(diamonds.contains(newPlayer)){
+				actionList.add("D");
+			}
 			else
 				actionList.add("d");
 		newPlayer = new Coordinate(row,col-1);
@@ -99,6 +107,9 @@ public class Problem {
 		if (!walls.contains(newPlayer))
 			if (diamonds.contains(newPlayer)&&(diamonds.contains(newDiamond)||walls.contains(newDiamond)))
 				;
+			else if(diamonds.contains(newPlayer)){
+				actionList.add("L");
+			}
 			else
 				actionList.add("l");
 		return actionList;
